@@ -95,6 +95,7 @@ public:
     /// <param name="value"></param>
     void setBool(const std::string& name, bool value) const
     {
+        // We convert the boolean into an integer (1 or 0)
         glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
     }
 
@@ -116,6 +117,18 @@ public:
     void setFloat(const std::string& name, float value) const
     {
         glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+    }
+
+    /// <summary>
+    /// Sets a Vec3 uniform on the `name` shader
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="v1"></param>
+    /// <param name="v2"></param>
+    /// <param name="v3"></param>
+    void setVector3(const std::string& name, float v1, float v2, float v3) const
+    {
+        glUniform3f(glGetUniformLocation(ID, name.c_str()), v1, v2, v3);
     }
 
 private:
