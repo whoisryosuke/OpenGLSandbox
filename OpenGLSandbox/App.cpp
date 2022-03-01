@@ -165,7 +165,11 @@ int main()
 
         // Draw vertex buffers
         cubeShader.use();
-        //cubeShader.setFloat("opacity", 0.5f);
+        // We can send uniform values (or vertex attributes) to the vertex shader
+        // using the helper methods on Shader class
+        // You can name them anything but the `_Name` convention comes from Unity
+        cubeShader.setFloat("_Opacity", 0.2f);
+        cubeShader.setFloat("_Offset", 0.5f);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         //glDrawArrays(GL_TRIANGLES, 0, 6);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
