@@ -7,6 +7,7 @@ private:
 
 public:
     ImGuiContext* context;
+    ImFont* font1;
 
 	UI(GLFWwindow* window, const char* glsl_version) {
         // Setup Dear ImGui context
@@ -23,6 +24,11 @@ public:
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init(glsl_version);
+
+
+        // Load fonts
+        float size_pixels = 15.0;
+        font1 = io.Fonts->AddFontFromFileTTF("assets/fonts/Roboto-Regular.ttf", size_pixels);
 	}
 
     void render(ImVec4 clear_color) {
@@ -43,7 +49,7 @@ public:
             ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, p);
             ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10.0f);
             ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(56.0 / 255.0, 54.0 / 255.0, 50.0 / 255.0, 1.0f));
-
+            
             ImGui::Begin("##1", &show_another_window, ImGuiWindowFlags_NoTitleBar);
 
             // Compute button size

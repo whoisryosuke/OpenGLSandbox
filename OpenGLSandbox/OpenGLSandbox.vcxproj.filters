@@ -107,4 +107,21 @@
       <Filter>Source Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\Roboto-Italic.ttf">
+      <Filter>Source Files</Filter>
+    </Font>
+    <Font Include="assets\fonts\Roboto-Light.ttf">
+      <Filter>Source Files</Filter>
+    </Font>
+    <Font Include="assets\fonts\Roboto-Regular.ttf">
+      <Filter>Source Files</Filter>
+    </Font>
+    <Font Include="assets\fonts\Roboto-Black.ttf">
+      <Filter>Source Files</Filter>
+    </Font>
+    <Font Include="assets\fonts\Roboto-Bold.ttf">
+      <Filter>Source Files</Filter>
+    </Font>
+  </ItemGroup>
 </Project>

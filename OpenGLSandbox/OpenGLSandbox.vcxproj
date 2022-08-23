@@ -178,6 +178,13 @@
   <ItemGroup>
     <Image Include="assets\screenshot1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\Roboto-Black.ttf" />
+    <Font Include="assets\fonts\Roboto-Bold.ttf" />
+    <Font Include="assets\fonts\Roboto-Italic.ttf" />
+    <Font Include="assets\fonts\Roboto-Light.ttf" />
+    <Font Include="assets\fonts\Roboto-Regular.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.210806.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.210806.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
