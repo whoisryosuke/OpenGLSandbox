@@ -50,7 +50,10 @@ public:
             ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10.0f);
             ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(56.0 / 255.0, 54.0 / 255.0, 50.0 / 255.0, 1.0f));
             
-            ImGui::Begin("##1", &show_another_window, ImGuiWindowFlags_NoTitleBar);
+            // Create new window
+            // Also removes title bar
+            // And the resize dragger in bottom right
+            ImGui::Begin("##1", &show_another_window, ImGuiWindowFlags_AlwaysAutoResize  | ImGuiWindowFlags_NoTitleBar);
 
             // Compute button size
             float margin = (style.WindowPadding.x) * 2.0f;
