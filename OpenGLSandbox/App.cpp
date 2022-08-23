@@ -5,6 +5,7 @@
 #include <imgui/imgui_impl_opengl3.h>
 #include "Shader.h"
 #include "stb_image.h"
+#include "UI.cpp"
 
 #include <iostream>
 #include <filesystem>
@@ -62,20 +63,8 @@ int main()
         return -1;
     }
 
-    // Setup Dear ImGui context
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+    UI* ui = new UI(window, glsl_version);
 
-    // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    //ImGui::StyleColorsClassic();
-
-    // Setup Platform/Renderer backends
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init(glsl_version);
 
     // Setup shaders (vertex and fragment)
     Shader cubeShader("Default.vs", "Default.ps", shaderTextBuffer);
@@ -159,8 +148,6 @@ int main()
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // Our app state (used for Imgui)
-    bool show_demo_window = true;
-    bool show_another_window = false;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 
@@ -172,41 +159,7 @@ int main()
         processInput(window);
         //glfwPollEvents();
 
-
-        // Start the Dear ImGui frame
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-
-        // 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
-        {
-            static float f = 0.0f;
-            static int counter = 0;
-
-            ImGui::Begin("What's up party people");                          // Create a window called "Hello, world!" and append into it.
-
-            ImGui::Text("I got Imgui integrated into OpenGL");               // Display some text (you can use a format strings too)
-            ImGui::Checkbox("Sample Checkbox", &show_demo_window);      // Edit bools storing our window open/close state
-            ImGui::Checkbox("Another Checkbox", &show_another_window);
-
-            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-            ImGui::ColorEdit3("Clear Color", (float*)&clear_color); // Edit 3 floats representing a color
-
-            if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-                counter++;
-            ImGui::SameLine();
-            ImGui::Text("counter = %d", counter);
-
-            ImGui::InputTextMultiline("string", shaderTextBuffer, IM_ARRAYSIZE(shaderTextBuffer));
-
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-            ImGui::End();
-        }
-
-        // Render Visuals!
-
-        // Rendering
-        ImGui::Render();
+        ui->render(clear_color);
 
         // Draw the clear (this clears previous render - in this case with a specific color)
         //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -237,11 +190,7 @@ int main()
         glfwPollEvents();
     }
 
-    // Terminate lifecycle
-    // Clean up memory and resources
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+    ui->destroy();
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
