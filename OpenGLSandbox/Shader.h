@@ -19,7 +19,7 @@ public:
     /// </summary>
     /// <param name="vertexPath"></param>
     /// <param name="fragmentPath"></param>
-    Shader(const char* vertexPath, const char* fragmentPath)
+    Shader(const char* vertexPath, const char* fragmentPath, const char* shaderTextBuffer)
     {
         std::string vertexCode;
         std::string fragmentCode;
@@ -52,6 +52,8 @@ public:
         }
         const char* vShaderCode = vertexCode.c_str();
         const char* fShaderCode = fragmentCode.c_str();
+        shaderTextBuffer = vShaderCode;
+        std::cout << "GOT SHADER TEXT" << std::endl;
 
         // Compile shaders in OpenGL
         unsigned int vertex, fragment;
